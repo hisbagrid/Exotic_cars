@@ -1,0 +1,153 @@
+/* ==========================================================
+   HOME PAGE STYLES
+   ========================================================== */
+
+/* ---------- Colours (used with var(--name)) ---------- */
+:root {
+  --crimson: #CC003A;      /* buttons and highlights */
+  --ivory: #FFFCF5;        /* page background */
+  --charcoal: #30322F;     /* text */
+  --purple: #2A1840;       /* logo */
+  --black: #020000;
+  --footer: #100B18;
+  --light-text: #595B58;
+  --border: #E4DCD2;
+}
+
+/* ---------- Basic reset ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Host Grotesk", Arial, sans-serif;
+  background: var(--ivory);
+  color: var(--charcoal);
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+h1 { font-size: 56px; line-height: 1.1; }
+h2 { font-size: 40px; margin-bottom: 32px; }
+h3 { font-size: 20px; }
+
+/* ---------- Header ---------- */
+.header {
+  position: sticky;   /* stays at the top when you scroll */
+  top: 0;
+  z-index: 10;
+  background: var(--ivory);
+}
+
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 85px;
+  padding: 0 6%;
+}
+
+.logo { font-size: 22px; font-weight: 700; color: var(--purple); text-transform: uppercase; }
+.logo span { font-weight: 400; }
+
+.nav { display: flex; align-items: center; gap: 32px; }
+.nav ul { display: flex; gap: 28px; list-style: none; }
+.nav ul a { color: var(--purple); font-weight: 500; }
+.nav ul a:hover,
+.nav ul a.active { color: var(--crimson); }
+
+.menu-btn { display: none; background: none; border: none; font-size: 28px; color: var(--purple); cursor: pointer; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+.btn-primary { background: var(--crimson); color: var(--ivory); }
+.btn-primary:hover { background: #A8002F; }
+.btn-outline { border-color: var(--ivory); color: var(--ivory); }
+.btn-outline:hover { background: var(--ivory); color: var(--black); }
+
+/* ---------- Hero (photo background) ---------- */
+.hero {
+  min-height: 85vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 80px 6%;
+  color: var(--ivory);
+  /* a dark layer on top of the photo so the white text is easy to read */
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)),
+              url("assets/images/showroom.jpg") center / cover;
+}
+.hero-text { max-width: 640px; }
+.hero-text p { margin: 16px 0 24px; font-size: 18px; }
+.hero-text .btn { margin-right: 12px; margin-bottom: 12px; }
+
+/* ---------- Sections ---------- */
+.section { padding: 80px 6%; }
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--crimson);
+  margin-bottom: 8px;
+}
+
+/* ---------- Top rented cars (4 columns) ---------- */
+.car-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.car img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; }
+
+/* ---------- How it works (dark section) ---------- */
+.dark { background: var(--black); color: var(--ivory); }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.step { border-top: 2px solid var(--crimson); padding-top: 20px; }
+.number { font-size: 48px; color: #555; }
+.step p { color: #BBBBBB; }
+
+/* ---------- Services (photo + text) ---------- */
+.services { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; background: #F8F3EE; }
+.services img { border-radius: 8px; }
+.services h3 { margin-top: 24px; }
+.services p { color: var(--light-text); }
+
+/* ---------- Reviews (3 cards) ---------- */
+.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.review { border: 1px solid var(--border); border-radius: 8px; padding: 28px; }
+.review p { margin-bottom: 16px; font-size: 18px; }
+.stars { color: var(--crimson); }
+
+/* ---------- FAQ ---------- */
+.faq details { border-bottom: 1px solid var(--border); padding: 20px 0; max-width: 800px; }
+.faq summary { font-size: 19px; font-weight: 500; cursor: pointer; }
+.faq details p { margin-top: 12px; color: var(--light-text); }
+
+/* ---------- Footer ---------- */
+.footer { background: var(--footer); color: var(--ivory); padding: 60px 6% 32px; }
+.footer-columns { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+.footer h4 { text-transform: uppercase; margin-bottom: 16px; }
+.footer a, .footer p { display: block; color: #D8CDE3; margin-bottom: 8px; }
+.footer a:hover { color: var(--crimson); }
+.copyright { border-top: 1px solid #51465C; margin-top: 40px; padding-top: 24px; font-size: 14px; }
+
+/* ---------- Phones and tablets (900px wide or less) ---------- */
+@media (max-width: 900px) {
+  h1 { font-size: 40px; }
+  h2 { font-size: 30px; }
+
+  .menu-btn { display: block; }
+
+  /* the menu is hidden until script.js adds the class "open" */
+  .nav { display: none; position: absolute; top: 85px; left: 0; right: 0;
+         flex-direction: column; align-items: flex-start; padding: 20px 6%; background: var(--ivory); }
+  .nav.open { display: flex; }
+  .nav ul { flex-direction: column; gap: 16px; }
+
+  .car-grid, .steps { grid-template-columns: 1fr 1fr; }
+  .services, .reviews, .footer-columns { grid-template-columns: 1fr; }
+}

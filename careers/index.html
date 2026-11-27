@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Careers | Exotic Cars</title>
+  <meta name="description" content="Join the Exotic Cars team. We are hiring mechanics and car detailers.">
+    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="page--careers">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="header-bar">
+            <a href="../index.html" class="logo">Exotic <span>Cars</span></a>
+            <button class="menu-btn" id="menu-btn">&#9776;</button>
+            <nav class="nav" id="nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../car-fleet/index.html">Our Fleet</a></li>
+                    <li><a href="../about-us/index.html">About Us</a></li>
+                    <li><a href="../careers/index.html" class="active">Careers</a></li>
+                </ul>
+                <a href="../car-fleet/index.html" class="btn btn-primary">Book a car</a>
+            </nav>
+        </div>
+    </header>
+
+  <main>
+    <!-- ===== Title ===== -->
+    <div class="page-title">
+      <h1 class="h1">Careers</h1>
+    </div>
+
+    <!-- ===== Role cards ===== -->
+    <section aria-label="Open roles">
+      <div class="container roles">
+
+        <article class="role role--mechanic" data-role="Mechanic">
+          <h2 class="role__title">Mechanic</h2>
+          <button class="btn btn--primary" type="button" data-apply="Mechanic">Apply now →</button>
+        </article>
+
+        <article class="role role--detailer" data-role="Car Detailer">
+          <h2 class="role__title">Car Detailer</h2>
+          <button class="btn btn--primary" type="button" data-apply="Car Detailer">Apply now →</button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== Application form ===== -->
+    <section class="apply" id="apply" aria-labelledby="apply-title">
+      <div class="container card apply__card" id="apply-card">
+
+        <div class="apply__intro">
+          <h2 class="h2" id="apply-title">Apply to join us</h2>
+          <p>Fill in your details and attach your CV. We read every application and reply within a few working days.</p>
+          <div class="apply__chosen" id="chosen-role" aria-live="polite">Choose a role to continue</div>
+        </div>
+
+        <form class="form" id="apply-form" novalidate>
+          <div class="field field--full" data-field="role">
+            <fieldset>
+              <legend class="legend">Role you are applying for</legend>
+              <div class="choice-group" style="margin-top:8px">
+                <label class="choice"><input type="radio" name="role" value="Mechanic"><span>Mechanic</span></label>
+                <label class="choice"><input type="radio" name="role" value="Car Detailer"><span>Car Detailer</span></label>
+              </div>
+            </fieldset>
+            <p class="error" id="err-role" role="alert"></p>
+          </div>
+
+          <div class="field" data-field="fullName">
+            <label for="fullName">Full name</label>
+            <input class="input" id="fullName" name="fullName" type="text" autocomplete="name" placeholder="e.g. Ali Raza" aria-describedby="err-fullName">
+            <p class="error" id="err-fullName" role="alert"></p>
+          </div>
+
+          <div class="field" data-field="email">
+            <label for="email">Email address</label>
+            <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby="err-email">
+            <p class="error" id="err-email" role="alert"></p>
+          </div>
+
+          <div class="field" data-field="phone">
+            <label for="phone">Phone number</label>
+            <input class="input" id="phone" name="phone" type="tel" autocomplete="tel" placeholder="03XX XXXXXXX" aria-describedby="err-phone">
+            <p class="error" id="err-phone" role="alert"></p>
+          </div>
+
+          <div class="field" data-field="city">
+            <label for="city">City</label>
+            <input class="input" id="city" name="city" type="text" autocomplete="address-level2" placeholder="Where you live" aria-describedby="err-city">
+            <p class="error" id="err-city" role="alert"></p>
+          </div>
+
+          <div class="field" data-field="experience">
+            <label for="experience">Years of experience</label>
+            <select class="input" id="experience" name="experience" aria-describedby="err-experience">
+              <option value="">Select</option>
+              <option>Less than 1 year</option>
+              <option>1 to 3 years</option>
+              <option>3 to 5 years</option>
+              <option>5 to 10 years</option>
+              <option>More than 10 years</option>
+            </select>
+            <p class="error" id="err-experience" role="alert"></p>
+          </div>
+
+          <div class="field" data-field="startDate">
+            <label for="startDate">Earliest start date</label>
+            <input class="input" id="startDate" name="startDate" type="date" aria-describedby="err-startDate">
+            <p class="error" id="err-startDate" role="alert"></p>
+          </div>
+
+          <div class="field field--full" data-field="cv">
+            <span class="legend" id="cv-label">CV or resume</span>
+            <label class="file-drop" id="file-drop">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg>
+              <span>
+                <span class="file-drop__name" id="file-name">Choose a file or drop it here</span><br>
+                <span class="file-drop__hint">PDF, DOC or DOCX, up to 5 MB</span>
+              </span>
+              <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" aria-labelledby="cv-label" aria-describedby="err-cv">
+            </label>
+            <p class="error" id="err-cv" role="alert"></p>
+          </div>
+
+          <div class="field field--full" data-field="message">
+            <label for="message">Tell us about yourself <span class="optional">(optional)</span></label>
+            <textarea class="input" id="message" name="message" maxlength="600" placeholder="Cars you have worked on, tools you use, anything we should know"></textarea>
+          </div>
+
+          <div class="field field--full" data-field="consent">
+            <label class="consent">
+              <input type="checkbox" id="consent" name="consent" aria-describedby="err-consent">
+              <span>I agree that Exotic Cars can store my details to process this application.</span>
+            </label>
+            <p class="error" id="err-consent" role="alert"></p>
+          </div>
+
+          <div class="form__actions">
+            <button class="btn btn--primary" type="submit" id="submit-btn">Submit application →</button>
+            <button class="btn btn--text" type="reset" id="reset-btn">Clear form</button>
+          </div>
+        </form>
+
+        <!-- Shown after a successful submit -->
+        <div class="success" id="success" tabindex="-1">
+          <div class="success__tick">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+          </div>
+          <h2 class="h2">Application sent</h2>
+          <p id="success-text"></p>
+          <span class="success__ref" id="success-ref"></span><br>
+          <button class="btn btn--secondary" type="button" id="apply-again">Apply for another role</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-columns">
+            <div>
+                <h4>Exotic Cars</h4>
+                <p>Experience the extraordinary. Exceptional cars and premium rentals, delivered wherever you are.</p>
+            </div>
+            <div>
+                <h4>Quick links</h4>
+                <a href="../index.html">Home</a>
+                <a href="../car-fleet/index.html">Our Fleet</a>
+                <a href="../about-us/index.html">About Us</a>
+                <a href="../careers/index.html">Careers</a>
+            </div>
+            <div>
+                <h4>Contact us</h4>
+                <p>+92 300 000 0000</p>
+                <p>hello@exoticcars.pk</p>
+                <p>Our location</p>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 Exotic Cars. All rights reserved.</p>
+    </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

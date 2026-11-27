@@ -1,0 +1,146 @@
+/* ===== Colours and sizes used on this page (use them with var(--name)) ===== */
+:root {
+  --crimson: #CC003A;          /* buttons and highlights */
+  --crimson-dark: #A8002F;     /* button hover */
+  --ivory: #FFFCF5;            /* page background */
+  --charcoal: #30322F;         /* text */
+  --purple: #2A1840;           /* logo, prices */
+  --beige: #E8DCD0;
+  --beige-light: #F8F3EE;
+  --lavender-light: #EFEAF4;   /* form field background */
+  --text-light: #595B58;
+  --text-lighter: #838482;
+  --border: rgba(42, 24, 64, 0.14);
+  --border-dark: rgba(42, 24, 64, 0.28);
+  --font: "Host Grotesk", Arial, sans-serif;
+  --radius: 8px;
+  --radius-input: 6px;
+  --shadow: 0 10px 30px rgba(16, 11, 24, 0.12);
+  --max-width: 1320px;
+  --page-padding: 6%;
+}
+
+/* ---------- Basic reset ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  background: var(--ivory);
+  color: var(--charcoal);
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+button, input, select, textarea { font: inherit; }
+
+/* ---------- Header (same on every page) ---------- */
+.header { position: sticky; top: 0; z-index: 10; background: var(--ivory); }
+.header-bar { display: flex; align-items: center; justify-content: space-between; height: 85px; padding: 0 6%; }
+.logo { font-size: 22px; font-weight: 700; color: var(--purple); text-transform: uppercase; }
+.logo span { font-weight: 400; }
+.nav { display: flex; align-items: center; gap: 32px; }
+.nav ul { display: flex; gap: 28px; list-style: none; }
+.nav ul a { color: var(--purple); font-weight: 500; }
+.nav ul a:hover,
+.nav ul a.active { color: var(--crimson); }
+.menu-btn { display: none; background: none; border: none; font-size: 28px; color: var(--purple); cursor: pointer; }
+
+/* ---------- Buttons ---------- */
+.btn { display: inline-block; padding: 14px 24px; border-radius: 8px; font-weight: 600; text-transform: uppercase; border: 1px solid transparent; cursor: pointer; }
+.btn-primary { background: var(--crimson); color: var(--ivory); }
+.btn-primary:hover { background: var(--crimson-dark); }
+
+/* ---------- Footer (same on every page) ---------- */
+.footer { background: #100B18; color: var(--ivory); padding: 60px 6% 32px; }
+.footer-columns { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+.footer h4 { text-transform: uppercase; margin-bottom: 16px; }
+.footer a, .footer p { display: block; color: #D8CDE3; margin-bottom: 8px; }
+.footer a:hover { color: var(--crimson); }
+.copyright { border-top: 1px solid #51465C; margin-top: 40px; padding-top: 24px; font-size: 14px; }
+
+/* ---------- Header and footer on phones (900px wide or less) ---------- */
+@media (max-width: 900px) {
+  .menu-btn { display: block; }
+  .nav { display: none; position: absolute; top: 85px; left: 0; right: 0;
+         flex-direction: column; align-items: flex-start; padding: 20px 6%; background: var(--ivory); }
+  .nav.open { display: flex; }
+  .nav ul { flex-direction: column; gap: 16px; }
+  .footer-columns { grid-template-columns: 1fr; }
+}
+
+.container { margin: 0 auto; }
+
+/* ===== Styles for this page only ===== */
+/* ==========================================================
+   ABOUT US PAGE
+   ========================================================== */
+
+/* ---------- Page layout ---------- */
+:root {
+  --section: 72px;   /* space between sections */
+}
+
+/* every <section> gets the same top spacing and side padding */
+section { padding: var(--section) var(--page-padding) 0; }
+main { padding-bottom: var(--section); }
+
+/* centre the content (padding is already on the section) */
+.container { max-width: var(--max-width); padding: 0; }
+
+/* ---------- Type ---------- */
+.h1 { font-size: clamp(44px, 7vw, 64px); }
+.h2 { font-size: clamp(30px, 4vw, 40px); }
+.h3 { font-size: 22px; }
+
+/* ---------- Page title ---------- */
+.page-title { text-align: center; padding: 64px var(--page-padding) 0; }
+
+/* ---------- Panels (one per section, alternating backgrounds) ---------- */
+.panel {
+  padding: 48px;
+  background: var(--ivory);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.panel--alt { background: var(--beige-light); }
+
+/* ---------- Heading on the left, text on the right ---------- */
+.split { display: grid; grid-template-columns: 1fr 1.6fr; gap: 56px; align-items: start; }
+.split--head { margin-bottom: 32px; }
+.section-head { display: block; margin-bottom: 24px; }
+
+.prose p { color: var(--text-light); max-width: 62ch; }
+.prose p + p { margin-top: 16px; }
+
+/* ---------- Grids of small cards ---------- */
+.grid { display: grid; gap: 24px; }
+.grid--4 { grid-template-columns: repeat(4, 1fr); }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+
+.tile {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--ivory);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--crimson);   /* crimson accent line */
+  border-radius: var(--radius);
+}
+.tile p { font-size: 16px; color: var(--text-light); }
+
+.note { margin-top: 24px; max-width: 70ch; color: var(--text-light); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  .split { grid-template-columns: 1fr; gap: 20px; }
+  .grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .grid--3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 680px) {
+  :root { --section: 48px; }
+  .grid--4, .grid--2 { grid-template-columns: 1fr; }
+  .panel { padding: 28px 22px; }
+}

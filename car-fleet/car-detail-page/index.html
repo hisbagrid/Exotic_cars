@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exotic Cars - Car Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="header-bar">
+            <a href="../../index.html" class="logo">Exotic <span>Cars</span></a>
+            <button class="menu-btn" id="menu-btn">&#9776;</button>
+            <nav class="nav" id="nav">
+                <ul>
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../../car-fleet/index.html" class="active">Our Fleet</a></li>
+                    <li><a href="../../about-us/index.html">About Us</a></li>
+                    <li><a href="../../careers/index.html">Careers</a></li>
+                </ul>
+                <a href="../../car-fleet/index.html" class="btn btn-primary">Book a car</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="details-container">
+        <!-- Dynamic Car Name Heading -->
+        <header class="details-header">
+            <h1 id="car-title">Car name</h1>
+        </header>
+
+        <!-- Looping Image Carousel Card -->
+        <section class="slider-box">
+            <button type="button" class="nav-arrow prev-btn" id="prev-btn" aria-label="Previous Image">&lt;</button>
+            <div class="slider-image-frame">
+                <img id="car-slider-img" src="" alt="Car Preview">
+            </div>
+            <button type="button" class="nav-arrow next-btn" id="next-btn" aria-label="Next Image">&gt;</button>
+        </section>
+
+        <!-- Specifications Cards (Matching Booking Form .info-card Style) -->
+        <section class="specs-wrapper">
+            <!-- Group 1: Overview & Pricing -->
+            <div class="info-card">
+                <div class="spec-row">
+                    <span class="spec-label">Brand :</span>
+                    <span class="spec-value" id="spec-brand"></span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Model :</span>
+                    <span class="spec-value" id="spec-model"></span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Category :</span>
+                    <span class="spec-value" id="spec-category"></span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Rent :</span>
+                    <span class="spec-value rent-highlight" id="spec-rent">$$ / day</span>
+                </div>
+            </div>
+
+            <!-- Group 2: Performance -->
+            <div class="info-card">
+                <div class="spec-row">
+                    <span class="spec-label">Engine :</span>
+                    <span class="spec-value" id="spec-engine"></span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">HP :</span>
+                    <span class="spec-value" id="spec-hp"></span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Transmission :</span>
+                    <span class="spec-value" id="spec-transmission"></span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Top speed :</span>
+                    <span class="spec-value" id="spec-topspeed"></span>
+                </div>
+            </div>
+
+            <!-- Group 3: Capacity & Drivetrain -->
+            <div class="info-card">
+                <div class="spec-row">
+                    <span class="spec-label">Seats :</span>
+                    <span class="spec-value" id="spec-seats"></span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Drive Train :</span>
+                    <span class="spec-value" id="spec-drivetrain"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Navigation Buttons -->
+        <div class="bottom-actions">
+            <a href="../index.html" class="action-btn back-btn">Back to Fleet</a>
+            <a href="../booking-form/index.html" id="book-now-link" class="action-btn book-btn">Book This Car</a>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-columns">
+            <div>
+                <h4>Exotic Cars</h4>
+                <p>Experience the extraordinary. Exceptional cars and premium rentals, delivered wherever you are.</p>
+            </div>
+            <div>
+                <h4>Quick links</h4>
+                <a href="../../index.html">Home</a>
+                <a href="../../car-fleet/index.html">Our Fleet</a>
+                <a href="../../about-us/index.html">About Us</a>
+                <a href="../../careers/index.html">Careers</a>
+            </div>
+            <div>
+                <h4>Contact us</h4>
+                <p>+92 300 000 0000</p>
+                <p>hello@exoticcars.pk</p>
+                <p>Our location</p>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 Exotic Cars. All rights reserved.</p>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>

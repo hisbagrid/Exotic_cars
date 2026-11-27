@@ -1,0 +1,260 @@
+/* ===== Colours and sizes used on this page (use them with var(--name)) ===== */
+:root {
+  --crimson: #CC003A;          /* buttons and highlights */
+  --crimson-dark: #A8002F;     /* button hover */
+  --ivory: #FFFCF5;            /* page background */
+  --charcoal: #30322F;         /* text */
+  --purple: #2A1840;           /* logo, prices */
+  --beige: #E8DCD0;
+  --beige-light: #F8F3EE;
+  --lavender-light: #EFEAF4;   /* form field background */
+  --text-light: #595B58;
+  --text-lighter: #838482;
+  --border: rgba(42, 24, 64, 0.14);
+  --border-dark: rgba(42, 24, 64, 0.28);
+  --font: "Host Grotesk", Arial, sans-serif;
+  --radius: 8px;
+  --radius-input: 6px;
+  --shadow: 0 10px 30px rgba(16, 11, 24, 0.12);
+  --max-width: 1320px;
+  --page-padding: 6%;
+}
+
+/* ---------- Basic reset ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  background: var(--ivory);
+  color: var(--charcoal);
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+button, input, select, textarea { font: inherit; }
+
+/* ---------- Header (same on every page) ---------- */
+.header { position: sticky; top: 0; z-index: 10; background: var(--ivory); }
+.header-bar { display: flex; align-items: center; justify-content: space-between; height: 85px; padding: 0 6%; }
+.logo { font-size: 22px; font-weight: 700; color: var(--purple); text-transform: uppercase; }
+.logo span { font-weight: 400; }
+.nav { display: flex; align-items: center; gap: 32px; }
+.nav ul { display: flex; gap: 28px; list-style: none; }
+.nav ul a { color: var(--purple); font-weight: 500; }
+.nav ul a:hover,
+.nav ul a.active { color: var(--crimson); }
+.menu-btn { display: none; background: none; border: none; font-size: 28px; color: var(--purple); cursor: pointer; }
+
+/* ---------- Buttons ---------- */
+.btn { display: inline-block; padding: 14px 24px; border-radius: 8px; font-weight: 600; text-transform: uppercase; border: 1px solid transparent; cursor: pointer; }
+.btn-primary { background: var(--crimson); color: var(--ivory); }
+.btn-primary:hover { background: var(--crimson-dark); }
+
+/* ---------- Footer (same on every page) ---------- */
+.footer { background: #100B18; color: var(--ivory); padding: 60px 6% 32px; }
+.footer-columns { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+.footer h4 { text-transform: uppercase; margin-bottom: 16px; }
+.footer a, .footer p { display: block; color: #D8CDE3; margin-bottom: 8px; }
+.footer a:hover { color: var(--crimson); }
+.copyright { border-top: 1px solid #51465C; margin-top: 40px; padding-top: 24px; font-size: 14px; }
+
+/* ---------- Header and footer on phones (900px wide or less) ---------- */
+@media (max-width: 900px) {
+  .menu-btn { display: block; }
+  .nav { display: none; position: absolute; top: 85px; left: 0; right: 0;
+         flex-direction: column; align-items: flex-start; padding: 20px 6%; background: var(--ivory); }
+  .nav.open { display: flex; }
+  .nav ul { flex-direction: column; gap: 16px; }
+  .footer-columns { grid-template-columns: 1fr; }
+}
+
+/* ===== Styles for this page only ===== */
+/* ==========================================================================
+   CAR DETAIL PAGE
+   ========================================================================== */
+
+/* Main Layout Container */
+.details-container {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 20px 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Top Dynamic Car Title */
+.details-header h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+/* Carousel Box */
+.slider-box {
+    width: 100%;
+    background: var(--ivory);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Left & Right Arrows (round buttons) */
+.nav-arrow {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--ivory);
+    border: 1px solid var(--crimson);
+    color: var(--crimson);
+    font-family: var(--font);
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-arrow:hover {
+    background: var(--crimson);
+    color: var(--ivory);
+}
+
+/* Image Frame Inside Slider */
+.slider-image-frame {
+    flex: 1;
+    aspect-ratio: 16 / 10;
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: var(--beige);
+}
+
+.slider-image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Specification Cards Stack */
+.specs-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Spec card */
+.info-card {
+    width: 100%;
+    background: var(--ivory);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px 32px;
+}
+
+/* One row: label on the left, value on the right */
+.spec-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.spec-row:last-child {
+    border-bottom: none;
+}
+
+.spec-label {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    white-space: nowrap;
+}
+
+.spec-value {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--charcoal);
+    text-align: right;
+}
+
+/* Rent stands out in purple, like prices in the design system */
+.spec-value.rent-highlight {
+    color: var(--purple);
+    font-weight: 700;
+    font-size: 20px;
+}
+
+/* Bottom Navigation Actions */
+.bottom-actions {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.action-btn {
+    flex: 1;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid var(--crimson);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Back to Fleet = secondary button */
+.back-btn {
+    background: var(--ivory);
+    color: var(--crimson);
+}
+
+.back-btn:hover {
+    background: #F5CCD8;
+}
+
+/* Book This Car = primary button */
+.book-btn {
+    background: var(--crimson);
+    color: var(--ivory);
+}
+
+.book-btn:hover {
+    background: var(--crimson-dark);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .details-container {
+        padding-top: 40px;
+    }
+
+    .info-card {
+        padding: 4px 20px;
+    }
+
+    .bottom-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .action-btn {
+        flex: none;   /* keep the full 50px height when stacked */
+    }
+}

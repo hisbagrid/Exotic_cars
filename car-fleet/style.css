@@ -1,0 +1,213 @@
+/* ===== Colours and sizes used on this page (use them with var(--name)) ===== */
+:root {
+  --crimson: #CC003A;          /* buttons and highlights */
+  --crimson-dark: #A8002F;     /* button hover */
+  --ivory: #FFFCF5;            /* page background */
+  --charcoal: #30322F;         /* text */
+  --purple: #2A1840;           /* logo, prices */
+  --beige: #E8DCD0;
+  --beige-light: #F8F3EE;
+  --lavender-light: #EFEAF4;   /* form field background */
+  --text-light: #595B58;
+  --text-lighter: #838482;
+  --border: rgba(42, 24, 64, 0.14);
+  --border-dark: rgba(42, 24, 64, 0.28);
+  --font: "Host Grotesk", Arial, sans-serif;
+  --radius: 8px;
+  --radius-input: 6px;
+  --shadow: 0 10px 30px rgba(16, 11, 24, 0.12);
+  --max-width: 1320px;
+  --page-padding: 6%;
+}
+
+/* ---------- Basic reset ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  background: var(--ivory);
+  color: var(--charcoal);
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+button, input, select, textarea { font: inherit; }
+
+/* ---------- Header (same on every page) ---------- */
+.header { position: sticky; top: 0; z-index: 10; background: var(--ivory); }
+.header-bar { display: flex; align-items: center; justify-content: space-between; height: 85px; padding: 0 6%; }
+.logo { font-size: 22px; font-weight: 700; color: var(--purple); text-transform: uppercase; }
+.logo span { font-weight: 400; }
+.nav { display: flex; align-items: center; gap: 32px; }
+.nav ul { display: flex; gap: 28px; list-style: none; }
+.nav ul a { color: var(--purple); font-weight: 500; }
+.nav ul a:hover,
+.nav ul a.active { color: var(--crimson); }
+.menu-btn { display: none; background: none; border: none; font-size: 28px; color: var(--purple); cursor: pointer; }
+
+/* ---------- Buttons ---------- */
+.btn { display: inline-block; padding: 14px 24px; border-radius: 8px; font-weight: 600; text-transform: uppercase; border: 1px solid transparent; cursor: pointer; }
+.btn-primary { background: var(--crimson); color: var(--ivory); }
+.btn-primary:hover { background: var(--crimson-dark); }
+
+/* ---------- Footer (same on every page) ---------- */
+.footer { background: #100B18; color: var(--ivory); padding: 60px 6% 32px; }
+.footer-columns { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+.footer h4 { text-transform: uppercase; margin-bottom: 16px; }
+.footer a, .footer p { display: block; color: #D8CDE3; margin-bottom: 8px; }
+.footer a:hover { color: var(--crimson); }
+.copyright { border-top: 1px solid #51465C; margin-top: 40px; padding-top: 24px; font-size: 14px; }
+
+/* ---------- Header and footer on phones (900px wide or less) ---------- */
+@media (max-width: 900px) {
+  .menu-btn { display: block; }
+  .nav { display: none; position: absolute; top: 85px; left: 0; right: 0;
+         flex-direction: column; align-items: flex-start; padding: 20px 6%; background: var(--ivory); }
+  .nav.open { display: flex; }
+  .nav ul { flex-direction: column; gap: 16px; }
+  .footer-columns { grid-template-columns: 1fr; }
+}
+
+/* Small red label above a heading */
+.label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--crimson); }
+
+/* ===== Styles for this page only ===== */
+/* ==========================================================================
+   CAR FLEET PAGE
+   ========================================================================== */
+
+/* Main Container */
+.fleet-container {
+    width: 100%;
+    max-width: calc(var(--max-width) + 2 * var(--page-padding));
+    margin: 0 auto;
+    padding: 64px var(--page-padding) 96px;
+}
+
+/* Page Title */
+.fleet-header {
+    margin-bottom: 48px;
+}
+
+.fleet-header h1 {
+    margin-top: 16px;
+    font-size: clamp(40px, 6vw, 64px);
+}
+
+/* 3x2 Responsive Grid */
+.fleet-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* Car Card (white card with a thin purple border, from the design system) */
+.car-card {
+    padding: 16px 16px 24px;
+    background: var(--ivory);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.car-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+/* Car Image Frame */
+.car-img-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    background-color: var(--beige);
+}
+
+.car-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.car-card:hover .car-img-wrapper img {
+    transform: scale(1.04);
+}
+
+/* Car Name */
+.car-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+    padding: 0 4px;
+}
+
+/* Action Buttons Container */
+.card-actions {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    margin-top: auto;   /* keeps buttons at the bottom of every card */
+}
+
+/* Buttons (same size and corners as the design system buttons) */
+.fleet-btn {
+    flex: 1;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid var(--crimson);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Details = secondary button (ivory with crimson border) */
+.btn-details {
+    background: var(--ivory);
+    color: var(--crimson);
+}
+
+.btn-details:hover {
+    background: #F5CCD8;
+}
+
+/* Book car = primary button (crimson) */
+.btn-book {
+    background: var(--crimson);
+    color: var(--ivory);
+}
+
+.btn-book:hover {
+    background: var(--crimson-dark);
+    border-color: var(--crimson-dark);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 960px) {
+    .fleet-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .fleet-container {
+        padding-top: 40px;
+    }
+
+    .fleet-grid {
+        grid-template-columns: 1fr;
+    }
+}

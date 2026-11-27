@@ -1,0 +1,234 @@
+/* ===== Colours and sizes used on this page (use them with var(--name)) ===== */
+:root {
+  --crimson: #CC003A;          /* buttons and highlights */
+  --crimson-dark: #A8002F;     /* button hover */
+  --ivory: #FFFCF5;            /* page background */
+  --charcoal: #30322F;         /* text */
+  --purple: #2A1840;           /* logo, prices */
+  --beige: #E8DCD0;
+  --beige-light: #F8F3EE;
+  --lavender-light: #EFEAF4;   /* form field background */
+  --text-light: #595B58;
+  --text-lighter: #838482;
+  --border: rgba(42, 24, 64, 0.14);
+  --border-dark: rgba(42, 24, 64, 0.28);
+  --font: "Host Grotesk", Arial, sans-serif;
+  --radius: 8px;
+  --radius-input: 6px;
+  --shadow: 0 10px 30px rgba(16, 11, 24, 0.12);
+  --max-width: 1320px;
+  --page-padding: 6%;
+}
+
+/* ---------- Basic reset ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  background: var(--ivory);
+  color: var(--charcoal);
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+button, input, select, textarea { font: inherit; }
+
+/* ---------- Header (same on every page) ---------- */
+.header { position: sticky; top: 0; z-index: 10; background: var(--ivory); }
+.header-bar { display: flex; align-items: center; justify-content: space-between; height: 85px; padding: 0 6%; }
+.logo { font-size: 22px; font-weight: 700; color: var(--purple); text-transform: uppercase; }
+.logo span { font-weight: 400; }
+.nav { display: flex; align-items: center; gap: 32px; }
+.nav ul { display: flex; gap: 28px; list-style: none; }
+.nav ul a { color: var(--purple); font-weight: 500; }
+.nav ul a:hover,
+.nav ul a.active { color: var(--crimson); }
+.menu-btn { display: none; background: none; border: none; font-size: 28px; color: var(--purple); cursor: pointer; }
+
+/* ---------- Buttons ---------- */
+.btn { display: inline-block; padding: 14px 24px; border-radius: 8px; font-weight: 600; text-transform: uppercase; border: 1px solid transparent; cursor: pointer; }
+.btn-primary { background: var(--crimson); color: var(--ivory); }
+.btn-primary:hover { background: var(--crimson-dark); }
+
+/* ---------- Footer (same on every page) ---------- */
+.footer { background: #100B18; color: var(--ivory); padding: 60px 6% 32px; }
+.footer-columns { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+.footer h4 { text-transform: uppercase; margin-bottom: 16px; }
+.footer a, .footer p { display: block; color: #D8CDE3; margin-bottom: 8px; }
+.footer a:hover { color: var(--crimson); }
+.copyright { border-top: 1px solid #51465C; margin-top: 40px; padding-top: 24px; font-size: 14px; }
+
+/* ---------- Header and footer on phones (900px wide or less) ---------- */
+@media (max-width: 900px) {
+  .menu-btn { display: block; }
+  .nav { display: none; position: absolute; top: 85px; left: 0; right: 0;
+         flex-direction: column; align-items: flex-start; padding: 20px 6%; background: var(--ivory); }
+  .nav.open { display: flex; }
+  .nav ul { flex-direction: column; gap: 16px; }
+  .footer-columns { grid-template-columns: 1fr; }
+}
+
+.container { margin: 0 auto; }
+
+/* Form field basics */
+.field { display: flex; flex-direction: column; }
+.input {
+  width: 100%;
+  height: 50px;
+  padding: 0 16px;
+  background: var(--lavender-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-input);
+  color: var(--purple);
+}
+.input:focus { outline: none; border-color: var(--crimson); background: var(--ivory); }
+
+/* ===== Styles for this page only ===== */
+/* ==========================================================
+   CAREERS PAGE
+   Colours, fonts, header, footer and the base .btn / .field / .input
+   ========================================================== */
+
+/* ---------- Page layout ---------- */
+:root {
+  --section: 72px;   /* space between sections */
+}
+
+/* every <section> gets the same top spacing and side padding */
+section { padding: var(--section) var(--page-padding) 0; }
+main { padding-bottom: var(--section); }
+
+/* centre the content (padding is already on the section) */
+.container { width: 100%; max-width: var(--max-width); padding: 0; }
+
+/* ---------- Type ---------- */
+.h1 { font-size: clamp(44px, 7vw, 64px); }
+.h2 { font-size: clamp(30px, 4vw, 40px); color: var(--charcoal); }
+
+/* ---------- Page title ---------- */
+.page-title { text-align: center; padding: 64px var(--page-padding) 0; }
+
+/* ---------- Button colours (the team's class names) ---------- */
+.btn--primary { background: var(--crimson); color: var(--ivory); }
+.btn--primary:hover { background: var(--crimson-dark); }
+.btn--secondary { background: var(--ivory); color: var(--crimson); border-color: var(--crimson); }
+.btn--secondary:hover { background: #F5CCD8; }
+.btn--text { background: none; color: var(--crimson); padding: 0 4px; }
+.btn--text:hover { color: var(--crimson-dark); }
+
+/* ---------- Role cards (photo + title + button) ---------- */
+.roles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+
+.role {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 32px;
+  cursor: pointer;
+  /* dark gradient on top of the photo so the white title is readable */
+  background:
+    linear-gradient(to top, rgba(2, 0, 0, 0.8) 0%, rgba(2, 0, 0, 0.1) 60%),
+    var(--photo) center / cover no-repeat;
+  outline: 3px solid transparent;
+  outline-offset: 4px;
+  transition: outline-color 0.2s, transform 0.2s;
+}
+.role--mechanic { --photo: url("Assets/mechanic.jpg"); }
+.role--detailer { --photo: url("Assets/detailer.jpg"); }
+.role:hover { transform: translateY(-4px); }
+.role.is-selected { outline-color: var(--crimson); }   /* added by script.js */
+.role__title { font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; color: var(--ivory); }
+
+/* ---------- Application form card ---------- */
+.apply { scroll-margin-top: 100px; }   /* stops the sticky header covering the form */
+.card {
+  background: var(--ivory);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.apply__card { padding: 48px; display: grid; grid-template-columns: 0.8fr 1.4fr; gap: 56px; }
+.apply__intro p { margin-top: 12px; font-size: 16px; color: var(--text-light); }
+.apply__chosen {
+  margin-top: 24px; padding: 14px 16px; border-radius: var(--radius-input);
+  background: var(--lavender-light); color: var(--purple); font-size: 15px; font-weight: 600;
+}
+
+/* ---------- Form fields ---------- */
+.form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.field { margin-bottom: 0; gap: 8px; }          /* grid gap already spaces the fields */
+.field--full { grid-column: 1 / -1; }
+.field label, .legend {
+  font-size: 15px; font-weight: 600; color: var(--charcoal);
+  text-transform: none; letter-spacing: 0;     /* undo the uppercase label style */
+}
+.field .optional { font-weight: 400; color: var(--text-lighter); }
+textarea.input { height: auto; min-height: 132px; padding: 14px 16px; }
+select.input { cursor: pointer; }
+
+/* red border + message when a field is wrong (added by script.js) */
+.field.has-error .input,
+.field.has-error .choice-group,
+.field.has-error .file-drop { border-color: var(--crimson); }
+.error { font-size: 14px; font-weight: 500; color: var(--crimson); }
+.error:empty { display: none; }
+
+/* Mechanic / Car Detailer radio buttons */
+fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.choice-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; border: 1px solid transparent; border-radius: var(--radius-input); }
+.choice { position: relative; }
+.choice input { position: absolute; opacity: 0; pointer-events: none; }
+.choice span {
+  display: flex; align-items: center; justify-content: center; height: 50px;
+  background: var(--lavender-light); color: var(--purple); font-weight: 600;
+  border: 1px solid var(--border); border-radius: var(--radius-input); cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.choice input:checked + span { background: var(--crimson); border-color: var(--crimson); color: var(--ivory); }
+
+/* CV upload box */
+.file-drop {
+  position: relative; display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 12px 16px; cursor: pointer;
+  background: var(--lavender-light); color: var(--purple); border: 1px dashed var(--border-dark); border-radius: var(--radius-input);
+  transition: border-color 0.2s;
+}
+.file-drop:hover, .file-drop.is-over { border-color: var(--crimson); }
+.file-drop input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.file-drop svg { width: 26px; height: 26px; flex: none; }
+.file-drop__name { font-size: 15px; font-weight: 500; }
+.file-drop__hint { font-size: 13px; color: var(--text-lighter); }
+
+/* Consent checkbox */
+.consent { display: flex; align-items: flex-start; gap: 12px; }
+.field .consent { font-weight: 400; }
+.consent input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--crimson); flex: none; }
+
+.form__actions { grid-column: 1 / -1; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+/* ---------- Success message (shown by script.js) ---------- */
+.success { display: none; text-align: center; padding: 24px 8px; grid-column: 1 / -1; }
+.success.is-visible { display: block; }
+.success__tick { width: 72px; height: 72px; margin: 0 auto 20px; border-radius: 50%; background: var(--crimson); color: var(--ivory); display: grid; place-items: center; }
+.success__tick svg { width: 36px; height: 36px; }
+.success p { margin: 12px auto 0; max-width: 46ch; color: var(--text-light); }
+.success__ref { display: inline-block; margin-top: 16px; padding: 8px 14px; border-radius: var(--radius-input); background: var(--lavender-light); color: var(--purple); font-weight: 700; }
+.success .btn { margin-top: 24px; }
+.apply__card.is-done .apply__intro, .apply__card.is-done .form { display: none; }
+.apply__card.is-done { grid-template-columns: 1fr; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  .apply__card { grid-template-columns: 1fr; gap: 36px; padding: 32px; }
+}
+@media (max-width: 680px) {
+  :root { --section: 48px; }
+  .roles { grid-template-columns: 1fr; }
+  .form { grid-template-columns: 1fr; }
+  .apply__card { padding: 24px 20px; }
+}

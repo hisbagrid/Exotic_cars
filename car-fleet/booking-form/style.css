@@ -1,0 +1,540 @@
+/* ===== Colours and sizes used on this page (use them with var(--name)) ===== */
+:root {
+  --crimson: #CC003A;          /* buttons and highlights */
+  --crimson-dark: #A8002F;     /* button hover */
+  --ivory: #FFFCF5;            /* page background */
+  --charcoal: #30322F;         /* text */
+  --purple: #2A1840;           /* logo, prices */
+  --beige: #E8DCD0;
+  --beige-light: #F8F3EE;
+  --lavender-light: #EFEAF4;   /* form field background */
+  --text-light: #595B58;
+  --text-lighter: #838482;
+  --border: rgba(42, 24, 64, 0.14);
+  --border-dark: rgba(42, 24, 64, 0.28);
+  --font: "Host Grotesk", Arial, sans-serif;
+  --radius: 8px;
+  --radius-input: 6px;
+  --shadow: 0 10px 30px rgba(16, 11, 24, 0.12);
+  --max-width: 1320px;
+  --page-padding: 6%;
+}
+
+/* ---------- Basic reset ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  background: var(--ivory);
+  color: var(--charcoal);
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+button, input, select, textarea { font: inherit; }
+
+/* ---------- Header (same on every page) ---------- */
+.header { position: sticky; top: 0; z-index: 10; background: var(--ivory); }
+.header-bar { display: flex; align-items: center; justify-content: space-between; height: 85px; padding: 0 6%; }
+.logo { font-size: 22px; font-weight: 700; color: var(--purple); text-transform: uppercase; }
+.logo span { font-weight: 400; }
+.nav { display: flex; align-items: center; gap: 32px; }
+.nav ul { display: flex; gap: 28px; list-style: none; }
+.nav ul a { color: var(--purple); font-weight: 500; }
+.nav ul a:hover,
+.nav ul a.active { color: var(--crimson); }
+.menu-btn { display: none; background: none; border: none; font-size: 28px; color: var(--purple); cursor: pointer; }
+
+/* ---------- Buttons ---------- */
+.btn { display: inline-block; padding: 14px 24px; border-radius: 8px; font-weight: 600; text-transform: uppercase; border: 1px solid transparent; cursor: pointer; }
+.btn-primary { background: var(--crimson); color: var(--ivory); }
+.btn-primary:hover { background: var(--crimson-dark); }
+
+/* ---------- Footer (same on every page) ---------- */
+.footer { background: #100B18; color: var(--ivory); padding: 60px 6% 32px; }
+.footer-columns { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+.footer h4 { text-transform: uppercase; margin-bottom: 16px; }
+.footer a, .footer p { display: block; color: #D8CDE3; margin-bottom: 8px; }
+.footer a:hover { color: var(--crimson); }
+.copyright { border-top: 1px solid #51465C; margin-top: 40px; padding-top: 24px; font-size: 14px; }
+
+/* ---------- Header and footer on phones (900px wide or less) ---------- */
+@media (max-width: 900px) {
+  .menu-btn { display: block; }
+  .nav { display: none; position: absolute; top: 85px; left: 0; right: 0;
+         flex-direction: column; align-items: flex-start; padding: 20px 6%; background: var(--ivory); }
+  .nav.open { display: flex; }
+  .nav ul { flex-direction: column; gap: 16px; }
+  .footer-columns { grid-template-columns: 1fr; }
+}
+
+/* ===== Styles for this page only ===== */
+/* ==========================================================================
+   BOOKING FORM PAGE
+   The class names below are used by script.js, so keep them as they are:
+   .open  .locked  .selected-green  .calculated  .active
+   ========================================================================== */
+
+/* Container Layout */
+.container {
+    min-height: auto;
+    display: flex;
+    justify-content: center;
+    padding: 56px 20px 96px;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Card */
+.info-card {
+    width: 100%;
+    background: var(--ivory);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px;
+}
+
+/* Card Titles */
+.info-card h1 {
+    font-size: 28px;
+    margin-bottom: 24px;
+}
+
+/* --- Self-Drive / Chauffeur-Driven buttons --- */
+.mode-toggle-container {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.mode-btn {
+    flex: 1;
+    height: 50px;
+    background: var(--ivory);
+    color: var(--crimson);
+    border: 1px solid var(--crimson);
+    border-radius: var(--radius);
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.mode-btn:hover {
+    background: #F5CCD8;
+}
+
+/* Selected mode button (class name comes from script.js) */
+.mode-btn.selected-green {
+    background: var(--crimson);
+    color: var(--ivory);
+}
+
+/* Sub-options container for Self-Drive (opens/closes) */
+.sub-options-container {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-bottom 0.4s ease;
+    margin-bottom: 0;
+}
+
+.sub-options-container.open {
+    max-height: 350px;
+    opacity: 1;
+    margin-bottom: 24px;
+}
+
+/* Form Groups: label on top, field underneath */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.input-group:last-child {
+    margin-bottom: 0;
+}
+
+.input-group label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+
+/* Inputs, dropdown and read-only boxes look like design system inputs */
+.input-group input,
+.car-dropdown,
+.display-box {
+    width: 100%;
+    height: 50px;
+    padding: 0 16px;
+    background: var(--lavender-light);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-input);
+    color: var(--purple);
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 500;
+    outline: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.input-group input:focus,
+.car-dropdown:focus {
+    border-color: var(--crimson);
+    background: var(--ivory);
+}
+
+.car-dropdown {
+    cursor: pointer;
+}
+
+/* Wrapper for date input + clear (x) button */
+.input-with-reset {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-reset input {
+    padding-right: 40px;
+}
+
+/* Clear (x) button */
+.reset-btn {
+    position: absolute;
+    right: 44px;
+    background: none;
+    border: none;
+    color: var(--text-lighter);
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.reset-btn:hover {
+    color: var(--crimson);
+}
+
+/* Read-only box (rental period, rent, delivery charge) */
+.display-box {
+    display: flex;
+    align-items: center;
+    background: var(--beige-light);
+    color: var(--text-lighter);
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* After a value is calculated by script.js */
+.display-box.calculated {
+    color: var(--purple);
+    font-style: normal;
+    font-weight: 600;
+    border-color: var(--purple);
+}
+
+/* Dealership / Delivery option buttons */
+.preference-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pref-option {
+    width: 100%;
+    padding: 16px 20px;
+    background: var(--ivory);
+    border: 1px dashed var(--border-dark);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.pref-option span {
+    font-size: 16px;
+    color: var(--charcoal);
+    display: block;
+    text-align: center;
+    pointer-events: none;
+}
+
+.pref-option:hover {
+    border-color: var(--crimson);
+}
+
+/* Selected option (class name comes from script.js) */
+.pref-option.selected-green {
+    border-style: solid;
+    border-color: var(--crimson);
+    background: #FBEFF2;
+}
+
+.pref-option.selected-green span {
+    font-weight: 600;
+    color: var(--crimson);
+}
+
+/* Dealership / Delivery details (open/close) */
+.dealership-details,
+.delivery-details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.4s ease;
+    margin-top: 0;
+}
+
+.dealership-details.open,
+.delivery-details.open {
+    max-height: 700px;
+    opacity: 1;
+    margin-top: 8px;
+}
+
+/* --- Bill Card --- */
+.bill-card {
+    transition: opacity 0.4s ease;
+}
+
+/* Greyed out until the dates are valid */
+.bill-card.locked {
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.bill-header {
+    cursor: pointer;
+}
+
+.bill-header h1 {
+    margin-bottom: 0;
+}
+
+.bill-card.open .bill-header h1 {
+    margin-bottom: 24px;
+}
+
+.bill-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.3s ease;
+}
+
+.bill-card.open .bill-content {
+    max-height: 1100px;
+    opacity: 1;
+}
+
+/* Total amount row */
+.payable-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-dark);
+}
+
+.payable-label {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.payable-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--purple);
+}
+
+/* Payment Section Box */
+.payment-box {
+    background: var(--beige-light);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.payment-title {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.txn-code {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.upload-area {
+    background: var(--ivory);
+    border: 1px dashed var(--border-dark);
+    border-radius: var(--radius-input);
+    padding: 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.upload-area:hover {
+    border-color: var(--crimson);
+}
+
+.upload-area p {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.camera-icon {
+    background: var(--crimson);
+    color: var(--ivory);
+    padding: 12px;
+    border-radius: 50%;
+    display: flex;
+}
+
+/* Terms & Conditions */
+.terms-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.terms-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--crimson);
+    cursor: pointer;
+}
+
+.terms-group label {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Confirm Button (primary button) */
+.confirm-container {
+    display: flex;
+}
+
+.confirm-btn {
+    width: 100%;
+    height: 50px;
+    background: var(--crimson);
+    color: var(--ivory);
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.confirm-btn:hover {
+    background: var(--crimson-dark);
+}
+
+/* --- Booking Confirmed popup --- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(16, 11, 24, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 999;
+}
+
+/* script.js adds .active to show it */
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-card {
+    background: var(--ivory);
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 420px;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.modal-card h2 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.check-icon-wrapper,
+.checkmark {
+    width: 60px;
+    height: 60px;
+}
+
+.modal-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Popup buttons (dark button from the design system) */
+.modal-btn {
+    width: 100%;
+    height: 50px;
+    background: var(--purple);
+    color: var(--ivory);
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.modal-btn:hover {
+    background: #3B2457;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+    .info-card {
+        padding: 28px 20px;
+    }
+
+    .mode-toggle-container {
+        flex-direction: column;
+    }
+}
